@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ Route::get('/', [HomeController::class, "index"])->name('home');
 //Route created for the student page
 //Route::get('/student', [StudentController::class, "index"])->name('student');
 
+//Route created for the student entry
 Route::prefix('/student')->group(function () {
         Route::get('/', [StudentController::class, "index"])->name('student');
         Route::post('/create', [StudentController::class, "create"])->name('student.create');
@@ -28,4 +30,10 @@ Route::prefix('/student')->group(function () {
         Route::get('/{student_id}/active', [StudentController::class, 'active'])->name('student.active');
 });
 
-
+//Route created for banners
+Route::prefix('/banner')->group(function () {
+        Route::get('/', [BannerController::class, "index"])->name('banner');
+        Route::post('/create', [BannerController::class, "create"])->name('banner.create');
+        Route::get('/{banner_id}/remove', [BannerController::class, 'remove'])->name('banner.remove');
+        Route::get('/{banner_id}/active', [BannerController::class, 'status'])->name('banner.status');
+});

@@ -3,28 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use domain\Facades\StudentFacade;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class StudentController extends ParentController
 {
-    protected $student;
-
-    public function __construct()
-    {
-        $this->student = new Student();
-    }
-
+    
     public function index()
     {
-        $response['students'] = $this->student->all();
+        $response['students'] = StudentFacade::all();
         return view('pages.student.index')->with($response);
     }
 
     //Function to store data
     public function create(Request $request)
     {
-        $this->student->create($request->all());
-
+        StudentFacade::create($request->all());
         //User redirected back once the task is completed
         return redirect()->back();
     }
@@ -32,19 +26,14 @@ class StudentController extends Controller
     //Function to delete data
     public function remove($student_id)
     {
-        $student = $this->student->find($student_id);
-        $student->delete();
-
+        StudentFacade::remove($student_id);
         return redirect()->back();
     }
 
     //Function to Update status
     public function active($student_id)
     {
-        $student = $this->student->find($student_id);
-        $student->status = 1;
-        $student->update();
-
+        StudentFacade::active($student_id);    
         return redirect()->back();
     }
 }

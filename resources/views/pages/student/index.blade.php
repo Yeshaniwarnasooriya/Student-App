@@ -29,7 +29,7 @@
                 <table class="table table-striped table-hover">
                     <thead>
                       <tr>
-                         <th scope="col">#</th>
+                         <th scope="col">No.</th>
                          <th scope="col">Name</th>
                          <th scope="col">Age</th>
                          <th scope="col">Status</th>
@@ -53,12 +53,17 @@
     
                            </td>
                            <td>
-                                <a href="{{ route('student.remove', $student->id) }}" class="btn btn-danger"><span class="material-symbols-outlined">
-                                    delete
-                                    </span></a>
-                                <a href="{{ route('student.active', $student->id) }}" class="btn btn-success"><i class="fas fa-check-circle"></i></a>
+                                {{-- Delete Button --}}
+                                <a href="{{ route('student.remove', $student->id) }}" class="btn btn-danger">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </a>
+                                {{-- Button to convert the Inactive status to Active --}}
+                                <a href="{{ route('student.active', $student->id) }}" class="btn btn-success">
+                                    <span class="material-symbols-outlined">check_circle</span>
+                                </a>
+
                            </td>
-                        </tr>
+                        </tr> 
                         
                         @endforeach
                     </tbody>
