@@ -30,10 +30,22 @@ class StudentController extends ParentController
         return redirect()->back();
     }
 
-    //Function to Update status
+    //Function to alter status
     public function active($student_id)
     {
         StudentFacade::active($student_id);    
+        return redirect()->back();
+    }
+
+    public function edit(Request $request)
+    {
+        $response['student'] = StudentFacade::get($request['student_id']);
+        return view('pages.student.edit')->with($response);
+    }
+
+    public function update(Request $request, $student_id)
+    {
+        StudentFacade::update($request->all(), $student_id);
         return redirect()->back();
     }
 }

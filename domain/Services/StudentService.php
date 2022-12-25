@@ -13,6 +13,11 @@ class StudentService
         $this->student = new Student();
     }
 
+    public function get($student_id)
+    {
+        return $this->student->find($student_id);
+    }
+    
     public function all()
     {
         return $this->student->all();
@@ -31,11 +36,24 @@ class StudentService
         $student->delete();
     }
 
-    //Function to Update status
+    //Function to alter status
     public function active($student_id)
     {
         $student = $this->student->find($student_id);
         $student->status = 1;
         $student->update();
     }
+
+    //Function to update data
+    public function update(array $data, $student_id)
+    {
+        $student = $this->student->find($student_id);
+        $student->update($this->edit($student, $data));
+    }
+
+    protected function edit(Student $student, $data)
+    {
+        return array_merge($student->toArray(), $data);
+    }
+
 }

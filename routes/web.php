@@ -26,6 +26,8 @@ Route::get('/', [HomeController::class, "index"])->name('home');
 Route::prefix('/student')->group(function () {
         Route::get('/', [StudentController::class, "index"])->name('student');
         Route::post('/create', [StudentController::class, "create"])->name('student.create');
+        Route::get('/edit', [StudentController::class, "edit"])->name('student.edit');
+        Route::post('/{student_id}/update', [StudentController::class, "update"])->name('student.update');
         Route::get('/{student_id}/remove', [StudentController::class, 'remove'])->name('student.remove');
         Route::get('/{student_id}/active', [StudentController::class, 'active'])->name('student.active');
 });
@@ -35,5 +37,5 @@ Route::prefix('/banner')->group(function () {
         Route::get('/', [BannerController::class, "index"])->name('banner');
         Route::post('/create', [BannerController::class, "create"])->name('banner.create');
         Route::get('/{banner_id}/remove', [BannerController::class, 'remove'])->name('banner.remove');
-        Route::get('/{banner_id}/active', [BannerController::class, 'status'])->name('banner.status');
+        Route::get('/{banner_id}/status', [BannerController::class, 'status'])->name('banner.status');
 });

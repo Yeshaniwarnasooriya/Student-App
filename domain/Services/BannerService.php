@@ -3,6 +3,8 @@
 namespace domain\Services;
 
 use App\Models\Banner;
+use infrastructure\Facades\ImagesFacade;
+use infrastructure\Images;
 
 class BannerService
 {
@@ -21,6 +23,10 @@ class BannerService
     //Function to store data
     public function create($data)
     {
+            if(isset($data['images'])){
+            $image = ImagesFacade::create($data['images'], [1,2,3,4,5]);
+            $data['image_id'] = $image['created_images']->id;
+        }
         $this->banner->create($data);
     }
 
@@ -35,7 +41,15 @@ class BannerService
     public function status($banner_id)
     {
         $banner = $this->banner->find($banner_id);
-        $banner->status = 1;
-        $banner->update();
+        if($banner->status == 0){
+            $banner->status = 1;
+            $banner->update();
+        }
+        else{
+            $banner->status = 0;
+            $banner->update();
+        }
+        
+        
     }
 }

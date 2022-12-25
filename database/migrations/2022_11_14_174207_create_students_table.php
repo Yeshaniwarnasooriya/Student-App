@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('age');
+            $table->string('image');
             $table->string('status')->default(0);
             $table->timestamps();
         });

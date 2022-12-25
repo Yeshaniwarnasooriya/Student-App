@@ -2,7 +2,7 @@
 
 namespace infrastructure\Facades;
 
-use Illuminate\Support\Facade\Facade;
+use Illuminate\Support\Facades\Facade;
 use infrustructure\Images;
 
 class ImagesFacade extends Facade {

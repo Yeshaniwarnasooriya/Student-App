@@ -14,4 +14,9 @@ class Banner extends Model
         'image_id',
         'status',
     ];
+
+    public function images()
+    {
+        return $this-> hasOne(Image::class, 'id', 'image_id');
+    }
 }

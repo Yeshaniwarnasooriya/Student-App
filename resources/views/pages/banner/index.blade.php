@@ -7,7 +7,7 @@
             <h1 class="page-title">Banner List</h1>
         </div>
         <div class="col-lg-12">
-            <form action="{{ route('banner.create') }}" method="post" enctype="multipart/form">
+            <form role="form" action="{{ route('banner.create') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-lg-6">
@@ -33,6 +33,7 @@
                       <tr>
                          <th scope="col">#</th>
                          <th scope="col">Title</th>
+                         <th scope="col">Image</th>
                          <th scope="col">Status</th>
                          <th scope="col">Action</th>
                       </tr>
@@ -43,24 +44,30 @@
                         <tr>
                            <th scope="row">{{ ++$key }}</th>
                            <td>{{ $banner->title }}</td>
+                           <td><img src="{{ config('images_access_path') }}/{{ $banner->images }}" alt=""></td>
                            <td>
 
                             @if ($banner->status == 0)
-                                <span class="badge bg-secondary">Inactive</span>
+                                <span class="badge bg-secondary">Draft</span>
                             @else
-                                <span class="badge bg-success">Active</span>
+                                <span class="badge bg-success">Publish</span>
                             @endif
     
                            </td>
                            <td>
                                 {{-- Delete Button --}}
                                 <a href="{{ route('banner.remove', $banner->id) }}" class="btn btn-danger">
-                                    <span class="material-symbols-outlined">delete</span>
+                                    <span class="material-symbols-outlined">Delete</span>
                                 </a>
+                                @if ($banner->status == 0)
                                 {{-- Button to convert the Inactive status to Active --}}
                                 <a href="{{ route('banner.status', $banner->id) }}" class="btn btn-success">
-                                    <span class="material-symbols-outlined">check_circle</span>
-                                </a>
+                                    <span class="material-symbols-outlined">Publish</span>
+                                </a>    
+                                @else
+                                    
+                                @endif
+                                
 
                            </td>
                         </tr> 
