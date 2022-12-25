@@ -9,9 +9,6 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ route('student') }}">Student Entry</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ route('banner') }}">Banners</a>
-          </li>
         </ul>
         {{-- Authentication --}}
         @if (Auth::user())

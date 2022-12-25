@@ -11,17 +11,17 @@
                 @csrf
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Student Name:</label>
+                            <label><strong>Student Name:</strong></label>
                             <input class="form-control" name="name" type="text" placeholder="Enter the student's name" required>
                         </div>
                     </div>
                     <div class="row gx-5 mt-3">
                         <div class="col-lg-4">
-                            <label>Student Age:</label>
+                            <label><strong>Student Age:</strong></label>
                             <input class="form-control" name="age" type="text" placeholder="Enter the student's age" required>
                         </div>
                         <div class="mt-0 col-lg-4 form-group">
-                            <label>Student Image:</label>
+                            <label><strong>Student Image:</strong></label>
                             <input class="form-control" name="images" type="file" placeholder="Select the Student Image"
                                 accept="image/jpg, image/jpeg, image/png">
                         </div>
